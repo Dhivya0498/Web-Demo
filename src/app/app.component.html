@@ -1,0 +1,89 @@
+<!-- PROGRESS BAR -->
+<fuse-progress-bar></fuse-progress-bar>
+<!-- / PROGRESS BAR -->
+
+<!-- VERTICAL LAYOUT 1 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-1'">
+	<vertical-layout-1></vertical-layout-1>
+</ng-container>
+<!-- / VERTICAL LAYOUT 1 -->
+
+<!-- VERTICAL LAYOUT 2 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-2'">
+	<vertical-layout-2></vertical-layout-2>
+</ng-container>
+<!-- / VERTICAL LAYOUT 2 -->
+
+<!-- VERTICAL LAYOUT 3 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-3'">
+	<vertical-layout-3></vertical-layout-3>
+</ng-container>
+<!-- / VERTICAL LAYOUT 3 -->
+
+<!-- HORIZONTAL LAYOUT 1 -->
+<ng-container *ngIf="fuseConfig.layout.style === 'horizontal-layout-1'">
+	<horizontal-layout-1></horizontal-layout-1>
+</ng-container>
+<!-- / HORIZONTAL LAYOUT 1 -->
+
+<!-- THEME OPTIONS PANEL -->
+<!-- <button mat-icon-button class="warn mat-elevation-z2 theme-options-button"
+        [ngClass]="{'right-side-panel': fuseConfig.layout.sidepanel.position === 'right',
+                    'side-panel-hidden': fuseConfig.layout.sidepanel.hidden === true}"
+        (click)="toggleSidebarOpen('themeOptionsPanel')">
+    <mat-icon>settings</mat-icon>
+</button>
+
+<fuse-sidebar name="themeOptionsPanel" class="theme-options-sidebar" position="right" [invisibleOverlay]="true">
+    <fuse-theme-options></fuse-theme-options>
+</fuse-sidebar> -->
+<!-- / THEME OPTIONS PANEL -->
+
+
+<!-- for 4 Column -->
+<!-- <div fxLayoutAlign="start center" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom
+	[@animateStagger]="{value:'50'}">
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="25" fxFlex.gt-md="25">
+
+	</div>
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="25" fxFlex.gt-md="25">
+
+	</div>
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="25" fxFlex.gt-md="25">
+
+	</div>
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="25" fxFlex.gt-md="25">
+		
+	</div>
+</div> -->
+
+<!-- for 3 Column -->
+<!-- <div fxLayoutAlign="start center" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom
+	[@animateStagger]="{value:'50'}">
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="33" fxFlex.gt-sm="33" fxFlex.gt-md="33">
+
+	</div>
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="33" fxFlex.gt-sm="33" fxFlex.gt-md="33">
+
+	</div>
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="33" fxFlex.gt-sm="33" fxFlex.gt-md="33">
+
+	</div>
+</div> -->
+
+<!-- for 2 Column -->
+<!-- <div fxLayoutAlign="start center" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom
+	[@animateStagger]="{value:'50'}">
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex.gt-md="50">
+
+	</div>
+	<div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="50" fxFlex.gt-md="50">
+
+	</div>
+</div> -->
+
+<!-- for 1 Column -->
+<!-- <div fxLayoutAlign="start center" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom
+	[@animateStagger]="{value:'50'}">
+	
+</div> -->

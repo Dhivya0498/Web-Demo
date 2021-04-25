@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+.login-body{
+  margin: auto;
+}
+mat-card{
+  margin-left: 0;
+  margin-right: -100px;
+  width: 100%;
+  padding: 40px;
+
+}
+.login-logo{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.login-title{
+  text-align: center;
+  font-family: 'Titillium Web', sans-serif;
+}
+.login-full-width {
+  width: 100%;
+}
+body.theme-default .mat-flat-button.mat-primary, body.theme-default .mat-raised-button.mat-primary, body.theme-default .mat-fab.mat-primary, body.theme-default .mat-mini-fab.mat-primary {
+  background-color: #3ca9dc;
+}
+.mat-raised-button.mat-primary:hover {
+  background-color: #0185cc;
+}
+.forget{
+  cursor: pointer;
+  text-align: right;
+  color: #1d9cd6;
+}
+.forget p:hover{
+  color: #0084c1;
+}
+.signin{
+  color: #0185cc;
+  margin: auto;
+  display: block;
+  width: 100%;
+}
+
+.green{
+  color: white;
+  position: absolute !important;
+  background: #e45c5c;
+  top: 54px;
+}
+.red {
+  color: white;
+  background: #2196F3!important;
+}

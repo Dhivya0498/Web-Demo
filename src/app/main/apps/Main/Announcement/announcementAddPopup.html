@@ -1,0 +1,111 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar style="background-color: #6cda58 !important" class="mat-accent m-0">
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Add New Announcement</span>
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-16 pb-0 m-0" fusePerfectScrollbar>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#229c3d" type="ball-clip-rotate" [fullScreen]="true">
+      <p style="color: white"> {{'LOADING' | translate }} </p>
+    </ngx-spinner>
+    <form class="event-form w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
+      [formGroup]="announceForm" #masterSizeGroupform="ngForm">
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="0 0 auto">
+
+        <mat-form-field appearance="outline" class="pl-4" fxFlex="100" class="pl-4">
+          <mat-label>Subject</mat-label>
+          <input formControlName="subject" matInput type="text" required>
+          <mat-error *ngIf="announceForm.get('subject').hasError('required') && announceForm.get('subject').touched">
+            <b>Subject Required!</b>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div style="margin-bottom: 10px;" fxLayout="row" fxLayoutAlign="start center" fxFlex="0 0 auto">
+        <mat-chip-list class="my-chip">
+          <mat-chip
+            [ngStyle]="selectedChip =='Announcement'?{'background-color':'green','color':'white'} : {'background-color': 'grey','color':'white'}"
+            (click)="changeSelected($event)">Announcement</mat-chip>
+          <mat-chip
+            [ngStyle]="selectedChip =='Event'?{'background-color':'green','color':'white'} : {'background-color': 'grey','color':'white'}"
+            (click)="changeSelected($event)">Event</mat-chip>
+          <mat-chip
+            [ngStyle]="selectedChip =='Reminder'?{'background-color':'green','color':'white'} : {'background-color': 'grey','color':'white'}"
+            (click)="changeSelected($event)">Reminder</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div *ngIf="isEvent || isReminder" fxLayout="row" fxLayoutAlign="start center" fxFlex="0 0 auto">
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+          <mat-label *ngIf="isReminder">Expiry Date</mat-label>
+          <mat-label *ngIf="isEvent">Date</mat-label>
+          <input matInput [matDatepicker]="datethree" formControlName="expiryDate">
+          <mat-datepicker-toggle matSuffix [for]="datethree">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #datethree></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="isEvent" appearance="outline" class="pl-4" fxFlex="50" class="pl-4">
+          <mat-label>Time</mat-label>
+          <input formControlName="time" matInput type="time">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="isEvent" fxLayout="row" fxLayoutAlign="start center" fxFlex="0 0 auto">
+        <mat-form-field *ngIf="isEvent" appearance="outline" class="pl-4" fxFlex="100" class="pl-4">
+          <mat-label>Location</mat-label>
+          <input formControlName="location" matInput type="text">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="0 0 auto">
+
+        <mat-form-field appearance="outline" class="pl-4" fxFlex="100" class="pl-4">
+          <mat-label>Description</mat-label>
+          <textarea formControlName="description" matInput type="text" required></textarea>
+          <mat-error
+            *ngIf="announceForm.get('description').hasError('required') && announceForm.get('description').touched">
+            <b>Description Required!</b>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="0 0 auto">
+        <mat-form-field appearance="outline" class="pl-4" fxFlex="100" class="pl-4">
+          <mat-label>Notify To</mat-label>
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let notify of notifyPersons" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(notify)">
+              {{notify}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Enter Notify..." [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="center center">
+    <button *ngIf="!announceForm.invalid" mat-raised-button style="background-color: #6cda58;color: white;"
+      [disabled]="announceForm.invalid" (click)="addAnnounceDetailsConfirm()">
+      {{'SUBMIT' | translate }}
+    </button>
+
+
+    <button *ngIf="announceForm.invalid" mat-raised-button style="background-color: #ccc;color: white;"
+      [disabled]="announceForm.invalid">
+      {{'SUBMIT' | translate }}
+    </button>
+
+
+    <button mat-raised-button style="background-color: #DCDCDC" (click)="matDialogRef.close()">
+      {{'CANCEL' | translate }}
+    </button>
+  </div>
+</div>

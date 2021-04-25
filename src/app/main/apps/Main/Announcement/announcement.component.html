@@ -1,0 +1,74 @@
+<div id="announcement" class="page-layout blank">
+    <div class="main-widget">
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#229c3d" type="ball-clip-rotate"
+            [fullScreen]="true">
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <div style="padding: 30px;" class="header accent" fxLayout="column" fxLayoutAlign="center center"
+            fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+            <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    Announcement Details
+                </span>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="end end">
+                <button mat-raised-button class="add-product-button fuse-white mt-24 mt-md-0"
+                    (click)="addInputMaterials()">
+                    <mat-icon>add</mat-icon>
+                    <span>ADD</span>
+                </button>
+            </div>
+        </div>
+        <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom [@animateStagger]="{value:'50'}">
+
+            <fuse-widget *ngIf="announcementData.length == 0" [@animate]="{value:'*',params:{y:'100%'}}" class="widget"
+                fxLayout="column" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-md="100">
+                <div class="fuse-widget-front">
+                    <div class="h2" fxLayout="row" fxLayoutAlign="center center">
+                        <div class="h2" style="text-align: left;margin-top: 10px;color: lightgray;"><b>No Announcement
+                                Available</b></div>
+                    </div>
+                </div>
+            </fuse-widget>
+
+            <fuse-widget *ngFor="let item of announcementData" [@animate]="{value:'*',params:{y:'100%'}}" class="widget"
+                fxLayout="column" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-md="100">
+                <div class="fuse-widget-front">
+                    <div data-letters="K" class="h2" fxLayout="row" fxLayoutAlign="start center">
+                        <div class="h2" style="text-align: left;margin-top: 10px;"><b>{{item.subject}}</b></div>
+                    </div>
+                    <div style="text-align: left;margin-left: 30px;" class="pt-8 pb-32" fxLayout="column"
+                        fxLayoutAlign="start start">
+                        <div>
+                            <p> {{item.description}}</p>
+
+                        </div>
+
+                        <div fxLayout="row" style="display: inline;" *ngIf="item.expires_on_date"
+                            class="h3 font-weight-500">
+                            <p *ngIf="item.expires_on_date">
+                                <span>
+                                    <mat-icon>
+                                        date_range
+                                    </mat-icon>
+                                </span>
+                                {{item.expires_on_date | date: 'd MMM, y'}}
+                            </p>
+                            <p *ngIf="item.location !== '' " style="margin-left:20px">
+                                <span>
+                                    <mat-icon>
+                                        location_on
+                                    </mat-icon>
+                                </span>
+                                {{item.location}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </fuse-widget>
+        </div>
+    </div>
+</div>

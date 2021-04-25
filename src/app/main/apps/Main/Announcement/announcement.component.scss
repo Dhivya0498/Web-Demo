@@ -1,0 +1,88 @@
+@import "src/@fuse/scss/fuse";
+
+#announcement {
+
+    
+    .header {
+            .search-wrapper {
+                width: 100%;
+                max-width: 480px;
+                background: none;
+                overflow: hidden;
+
+                @include media-breakpoint('xs') {
+                    width: 100%;
+                }
+
+                .search {
+                    width: 100%;
+                    height: 48px;
+                    line-height: 48px;
+                    padding: 0 18px;
+
+                    .mat-icon {
+                        color: white;
+                    }
+
+                    input {
+                        width: 100%;
+                        height: 48px;
+                        min-height: 48px;
+                        max-height: 48px;
+                        padding: 0 16px;
+                        border: none;
+                        outline: none;
+                        background: none;
+                        color: white;
+                        border-bottom: 2px solid white;
+
+                        &::-webkit-input-placeholder {
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            @include media-breakpoint('lt-md') {
+                padding: 8px 0;
+                height: 192px !important;
+                min-height: 192px !important;
+                max-height: 192px !important;
+            }
+        }
+    
+        .my-chip .mat-chip-selected {
+            background-color: green !important;
+            color: #fff;
+          }
+
+        [data-letters]:before {
+            content:attr(data-letters);
+            display:inline-block;
+            font-size:1em;
+            width:2.5em;
+            height:2.5em;
+            line-height:2.5em;
+            text-align:center;
+            border-radius:50%;
+            background:#eb6895 ;
+            vertical-align:middle;
+            margin-top:1em;
+            margin-right: 1em;
+            margin: 1em;
+            color:white;
+            }
+            
+    .main-widget {
+        display: flex;
+        flex-direction: column;
+        //background-color: #80808024;
+
+    }
+    mat-drawer {
+        width: 500px;
+        height: 1000px;
+        margin: 12px;
+        border: 1px solid #555;
+    }
+}

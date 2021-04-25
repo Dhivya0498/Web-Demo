@@ -1,0 +1,169 @@
+<div id="login">
+    <ngx-spinner bdColor="rgba(51,51,51,0.4)" size="large" color="#377B2B" type="ball-spin-clockwise">
+    </ngx-spinner>
+    <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="setupApp" fxLayout="row" id="login-form"
+            [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+            <div class="logo">
+                <img src="../../../../../assets/images/avatars/loginLogo.jpg">
+            </div>
+            <form style="margin-top: 20px;" [formGroup]="loginForms" novalidate>
+                <p style="float: right;color: green;cursor: pointer;" (click)="loginDirectly()">Log In</p>
+                <h1 style="font-size: 30px;"><b>Setup Your Application</b></h1>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Company Name</mat-label>
+                    <input type="text" matInput formControlName="companyName">
+                    <mat-error *ngIf="loginForms.get('companyName').hasError('required') &&
+                      loginForms.get('companyName').touched">
+                        Company Name required
+                    </mat-error>
+                </mat-form-field>
+
+                <div fxLayout="row wrap" fxLayoutAlign="start center">
+                    <mat-form-field fxFlex="50" class="pr-4" appearance="outline">
+                        <mat-label>Location</mat-label>
+                        <input type="text" matInput formControlName="location">
+                        <mat-error *ngIf="loginForms.get('location').hasError('required') &&
+                      loginForms.get('location').touched">
+                            Location required
+                        </mat-error>
+                        <mat-error>Location is Required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                        <mat-label>No. of Employees </mat-label>
+                        <input type="number" matInput formControlName="noofEmployees">
+                        <mat-error *ngIf="loginForms.get('noofEmployees').hasError('required') &&
+                      loginForms.get('noofEmployees').touched">
+                            No. of Employees required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Domain Name</mat-label>
+                    <input type="text" matInput formControlName="domainName">
+                    <mat-error *ngIf="loginForms.get('domainName').hasError('required') &&
+                    loginForms.get('domainName').touched">
+                        Domain Name required
+                    </mat-error>
+                </mat-form-field>
+                <button *ngIf="loginForms.invalid" class="submit-button" mat-raised-button
+                    style="background-color: #ccc; color: white;margin-top: 30px;" aria-label="LOG IN"
+                    [disabled]="loginForms.invalid" (click)="createUser()">
+                    Next
+                </button>
+                <button *ngIf="!loginForms.invalid" class="submit-button" mat-raised-button
+                    style="background-color: #4bc236; color: white;margin-top: 30px;" aria-label="LOG IN"
+                    [disabled]="loginForms.invalid" (click)="createUser()">
+                    Next
+                </button>
+
+            </form>
+        </div>
+        <div *ngIf="createAccount" fxLayout="row" id="login-form"
+            [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+            <div class="logo">
+                <img src="../../../../../assets/images/avatars/loginLogo.jpg">
+            </div>
+            <form style="margin-top: 20px;" [formGroup]="createAccountForms" novalidate>
+                <h1 style="font-size: 30px;"><b>Create Personal Password</b></h1>
+
+                <div fxLayout="row wrap" fxLayoutAlign="start center">
+                    <mat-form-field fxFlex="50" class="pr-4" appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input type="text" matInput formControlName="firstName">
+                        <mat-error *ngIf="createAccountForms.get('firstName').hasError('required') &&
+                      createAccountForms.get('firstName').touched">
+                            First Name required
+                        </mat-error>
+                        <mat-error>First Name is Required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                        <mat-label>Last Name</mat-label>
+                        <input type="text" matInput formControlName="lastName">
+                        <mat-error *ngIf="createAccountForms.get('lastName').hasError('required') &&
+                      createAccountForms.get('lastName').touched">
+                            Last Name required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error *ngIf="createAccountForms.get('password').hasError('required') &&
+                        createAccountForms.get('password').touched">
+                        Password Required
+                    </mat-error>
+                    <mat-error *ngIf="!createAccountForms.get('password').hasError('required') &&
+                        createAccountForms.get('password').hasError('InvalidUserNamePassword')">
+                        Invalid Password
+                    </mat-error>
+                </mat-form-field>
+
+                <button *ngIf="createAccountForms.invalid" class="submit-button" mat-raised-button
+                    style="background-color: #ccc; color: white;margin-top: 30px;" aria-label="LOG IN"
+                    [disabled]="createAccountForms.invalid" (click)="setupUser()">
+                    Complete
+                </button>
+                <button *ngIf="!createAccountForms.invalid" class="submit-button" mat-raised-button
+                    style="background-color: #4bc236; color: white;margin-top: 30px;" aria-label="LOG IN"
+                    [disabled]="createAccountForms.invalid" (click)="setupUser()">
+                    Complete
+                </button>
+            </form>
+        </div>
+
+        <div *ngIf="loginPage" fxLayout="row" id="login-form"
+            [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+            <div class="logo">
+                <img src="../../../../../assets/images/avatars/loginLogo.jpg">
+            </div>
+            <form style="margin-top: 20px;" [formGroup]="signInForms" novalidate>
+                <p style="float: right;color: green;cursor: pointer;" (click)="signUp()">Sign In</p>
+                <h1 style="font-size: 30px;"><b>Login to your app</b></h1>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>User Name</mat-label>
+                    <input type="text" matInput formControlName="loginID">
+                    <mat-icon matSuffix class="secondary-text">person_outline</mat-icon>
+                    <mat-error *ngIf="signInForms.get('loginID').hasError('required') &&
+                  signInForms.get('loginID').touched">
+                        User Name required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="!signInForms.get('loginID').hasError('required') && signInForms.get('loginID').hasError('ExistingUser')">
+                        <b>Existing User!</b>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error *ngIf="signInForms.get('password').hasError('required') &&
+                  signInForms.get('password').touched">
+                        Password Required
+                    </mat-error>
+                    <mat-error *ngIf="!signInForms.get('password').hasError('required') &&
+              signInForms.get('password').hasError('InvalidUserNamePassword')">
+                        Invalid Password
+                    </mat-error>
+                </mat-form-field>
+
+                <button *ngIf="signInForms.invalid" class="submit-button" mat-raised-button
+                    style="background-color: #ccc; color: white;margin-top: 30px;" aria-label="LOG IN"
+                    [disabled]="signInForms.invalid" (click)="loginCheck()">
+                    Sign In
+                </button>
+                <button *ngIf="!signInForms.invalid" class="submit-button" mat-raised-button
+                    style="background-color: #4bc236; color: white;margin-top: 30px;" aria-label="LOG IN"
+                    [disabled]="signInForms.invalid" (click)="loginCheck()">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
